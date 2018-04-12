@@ -7,7 +7,16 @@ module.exports = async (req, res) => {
         return res.json({ message: '파일이나 사진은 입력 현재 미지원입니다.' })
     }
     let message
-    let keyboard = {}
+    let keyboard = {
+        keyboard: {
+            type: 'buttons',
+            buttons: [
+                '사용법',
+                '트렌드',
+                '취소'
+            ]
+        }
+    }
     switch (content) {
         case '사용법':
         case 'help':
@@ -67,16 +76,6 @@ module.exports = async (req, res) => {
                 message_button: {
                     label: '확인해보기',
                     url: newsData.link
-                }
-            }
-            keyboard = {
-                keyboard: {
-                    type: 'buttons',
-                    buttons: [
-                        '사용법',
-                        '트렌드',
-                        '취소'
-                    ]
                 }
             }
             break
