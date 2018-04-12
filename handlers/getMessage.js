@@ -38,8 +38,16 @@ module.exports = async (req, res) => {
         },
         photo: {
             url: photo.link,
-            width: photo.sizewidth,
-            height: photo.sizeheight
+            width: parseInt(photo.sizewidth),
+            height: parseInt(photo.sizeheight)
+        },
+        keyboard: {
+            type: 'buttons',
+            buttons: [
+                '사용법',
+                '트렌드',
+                '취소'
+            ]
         }
     }
     res.json({ message })
