@@ -1,0 +1,25 @@
+{
+  "name": "media-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KSH-code/media-lab.git"
+  },
+  "author": "Henry Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KSH-code/media-lab/issues"
+  },
+  "homepage": "https://github.com/KSH-code/media-lab#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "request": "2.85.0",
+    "xml-parser": "1.2.1"
+  }
+}
