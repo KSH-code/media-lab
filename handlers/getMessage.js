@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
         case '?':
         case '도움말':
         case '취소':
-            if (content === '취소') keyboard = {}
+            keyboard = {}
             message = {
                 text: '문장 또는 단어로 기사를 랜덤으로 쉽게 검색할 수 있는 서비스입니다.\n최근 트렌드를 불러오셔서 간편하게 검색하고 싶으시다면, "트렌드"를 입력해주세요.'
             }
