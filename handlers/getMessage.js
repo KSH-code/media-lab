@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
     if (type !== 'text') {
         return res.json({ message: '파일이나 사진은 입력 현재 미지원입니다.' })
     }
+    const sort = `sort=${Math.random() > 0.8 ? 'date' : 'sim'}`
     if (content === '트렌드') {
         return res.json({
             message: {
@@ -31,7 +32,7 @@ module.exports = async (req, res) => {
             break;
     }
     const newsData = await new Promise((resolve, reject) => {
-        request.get('https://openapi.naver.com/v1/search/news.json?display=50&query=' + encodeURI(content), {
+        request.get(`https://openapi.naver.com/v1/search/news.json?${sort}&display=50&query=encodeURI(content)`, {
             headers: {
                 'X-Naver-Client-Id': 'AS6K1gzICkkLrkisD_4p',
                 'X-Naver-Client-Secret': '5MA7twyOkN',
@@ -42,7 +43,7 @@ module.exports = async (req, res) => {
         })
     })
     const photo = await new Promise((resolve, reject) => {
-        request.get('https://openapi.naver.com/v1/search/image?filter=medium&display=50&query=' + encodeURI(content), {
+        request.get(`https://openapi.naver.com/v1/search/image?${sort}&filter=medium&display=50&query=${encodeURI(content)}`, {
             headers: {
                 'X-Naver-Client-Id': 'AS6K1gzICkkLrkisD_4p',
                 'X-Naver-Client-Secret': '5MA7twyOkN',
