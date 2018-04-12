@@ -4,10 +4,10 @@ const crawling = require('../crawling')
 module.exports = async (req, res) => {
     const { type, content } = req.body
     const buttons = await crawling(new Date().toISOString().slice(0, 10))
-    let message
     if (type !== 'text') {
         return res.json({ message: '파일이나 사진은 입력 현재 미지원입니다.' })
     }
+    let message
     switch (content) {
         case '사용법':
         case 'help':
