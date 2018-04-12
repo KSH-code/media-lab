@@ -7,7 +7,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/media')
 
-app.get('/keywords', require('./handlers/getDate'))
+app.get('/keyboard', require('./handlers/getButtons'))
+app.post('/message', require('./handlers/getMessage'))
 
 app.use((err, req, res, next) => {
     console.dir(err)
