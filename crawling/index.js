@@ -45,7 +45,7 @@ async function getData(date) {
                 resolve()
             })
         })
-        await new Data({ date, data: dataList }).save()
+        await new Data({ date, data: dataList, location: 'ko' }).save()
     } else {
         return data.data
     }
