@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
     if (content === '트렌드') {
         return res.json({
             message: {
+                text: '현재 날짜를 기준으로 불러온 트렌드 입니다.',
                 keyboard: {
                     type: 'buttons',
                     buttons
