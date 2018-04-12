@@ -19,5 +19,5 @@ module.exports = async (req, res) => {
         }))
         await new Promise(resolve => setTimeout(resolve, 100))
     }
-    console.log(newsList)
+    res.json({ newsList })
 }
