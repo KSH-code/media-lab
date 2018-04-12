@@ -11,7 +11,6 @@ module.exports = async (req, res) => {
         keyboard: {
             type: 'buttons',
             buttons: [
-                '사용법',
                 '트렌드',
                 '취소'
             ]
