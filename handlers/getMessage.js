@@ -24,11 +24,13 @@ module.exports = async (req, res) => {
             const buttons = await crawling(new Date().toISOString().slice(0, 10))
             console.dir(buttons)
             message = {
-                text: '현재 날짜를 기준으로 불러온 트렌드 키워드입니다.'
+                text: '현재 날짜를 기준으로 불러온 트렌드 목록입니다.'
             }
             keyboard = {
-                type: 'buttons',
-                buttons
+                keyboard: {
+                    type: 'buttons',
+                    buttons
+                }
             }
             break
         default:
@@ -68,14 +70,16 @@ module.exports = async (req, res) => {
                 }
             }
             keyboard = {
-                type: 'buttons',
-                buttons: [
-                    '사용법',
-                    '트렌드',
-                    '취소'
-                ]
+                keyboard: {
+                    type: 'buttons',
+                    buttons: [
+                        '사용법',
+                        '트렌드',
+                        '취소'
+                    ]
+                }
             }
             break
     }
-    res.json({ message, keyboard })
+    res.json({ message, ...keyboard })
 }
