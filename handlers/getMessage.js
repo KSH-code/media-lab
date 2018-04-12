@@ -25,31 +25,31 @@ module.exports = async (req, res) => {
         case '도움말':
             return res.json({
                 message: {
-                    text: '문장 또는 단어로 기사를 쉽게 검색할 수 있는 서비스입니다.\n최근 트렌드를 불러오셔서 간편하게 검색하고 싶으시다면, "트렌드"를 입력해주세요.'
+                    text: '문장 또는 단어로 기사를 랜덤으로 쉽게 검색할 수 있는 서비스입니다.\n최근 트렌드를 불러오셔서 간편하게 검색하고 싶으시다면, "트렌드"를 입력해주세요.'
                 }
             })
             break;
     }
     const newsData = await new Promise((resolve, reject) => {
-        request.get('https://openapi.naver.com/v1/search/news.json?display=1&query=' + encodeURI(content), {
+        request.get('https://openapi.naver.com/v1/search/news.json?display=50&query=' + encodeURI(content), {
             headers: {
                 'X-Naver-Client-Id': 'AS6K1gzICkkLrkisD_4p',
                 'X-Naver-Client-Secret': '5MA7twyOkN',
             }
         }, (err, res, body) => {
             if (err) return reject(err)
-            resolve(JSON.parse(res.body).items[0])
+            resolve(JSON.parse(res.body).items[Math.floor(Math.random() * 50)])
         })
     })
     const photo = await new Promise((resolve, reject) => {
-        request.get('https://openapi.naver.com/v1/search/image?filter=medium&display=1&query=' + encodeURI(content), {
+        request.get('https://openapi.naver.com/v1/search/image?filter=medium&display=50&query=' + encodeURI(content), {
             headers: {
                 'X-Naver-Client-Id': 'AS6K1gzICkkLrkisD_4p',
                 'X-Naver-Client-Secret': '5MA7twyOkN',
             }
         }, (err, res, body) => {
             if (err) return reject(err)
-            resolve(JSON.parse(res.body).items[0])
+            resolve(JSON.parse(res.body).items[Math.floor(Math.random() * 50)])
         })
     })
     const message = {
