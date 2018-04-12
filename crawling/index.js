@@ -20,8 +20,8 @@ const { Data } = require("../models")
 // })
 
 async function getData(date) {
-    const data = await Data.findOne({ date })
-    const dataList = []
+    const data = await Data.findOne({ date }).lean(true)
+    const dataList = ['취소']
     if (!data) {
         await new Promise(resolve => {
             request.get('https://trends.google.com/trends/hottrends/atom/feed?pn=p23', {
@@ -47,9 +47,8 @@ async function getData(date) {
         })
         await new Data({ date, data: dataList, location: 'ko' }).save()
     } else {
-        dataList.concat(data.data)
+        return dataList.concat(data.data)
     }
-    dataList.push('취소')
     return dataList
 }
 module.exports = getData
