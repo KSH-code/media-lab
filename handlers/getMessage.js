@@ -25,9 +25,9 @@ module.exports = async (req, res) => {
     //           description: '이에 대해 <b>채진</b>과 <b>조현아</b> 소속사는 &quot;술자리 게임 중 찍힌 영상일 뿐, 교제하는 사이는 아니다&quot;라고 해명했다. -다음은 <b>채진</b>의 자필 사과문 전문. 안녕하세요. <b>채진</b>석입니다. 먼저 이번 일로 인해 응원해주시고... ',
     //           pubDate: 'Wed, 11 Apr 2018 12:03:00 +0900' }
     const message = {
-        text: newsData.description,
+        text: newsData.link,
         message_button: {
-            label: newsData.title,
+            label: '확인해보기',
             url: newsData.link
         }
     }
