@@ -9,8 +9,12 @@ module.exports = async (req, res) => {
     }
     if (content === '트렌드') {
         return res.json({
-            type: 'buttons',
-            buttons
+            message: {
+                keyboard: {
+                    type: 'buttons',
+                    buttons
+                }
+            }
         })
     }
     switch (content) {
