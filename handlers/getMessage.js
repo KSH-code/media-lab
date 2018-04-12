@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
         return res.json({ message: '파일이나 사진은 입력 현재 미지원입니다.' })
     }
 
-    const [newsData] = await new Promise((resolve, reject) => {
+    const newsData = await new Promise((resolve, reject) => {
         request.get('https://openapi.naver.com/v1/search/news.json?display=1&query=' + encodeURI(content), {
             headers: {
                 'X-Naver-Client-Id': 'AS6K1gzICkkLrkisD_4p',
