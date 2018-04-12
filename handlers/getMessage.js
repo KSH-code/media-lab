@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
             break;
     }
     const newsData = await new Promise((resolve, reject) => {
-        request.get(`https://openapi.naver.com/v1/search/news.json?${sort}&display=50&query=encodeURI(content)`, {
+        request.get(`https://openapi.naver.com/v1/search/news.json?${sort}&display=50&query=${encodeURI(content)}`, {
             headers: {
                 'X-Naver-Client-Id': 'AS6K1gzICkkLrkisD_4p',
                 'X-Naver-Client-Secret': '5MA7twyOkN',
