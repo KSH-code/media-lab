@@ -14,10 +14,11 @@ module.exports = async (req, res) => {
                 }
             }, (err, res, body) => {
                 if (err) return reject(err)
-                resolve(res.body)
+                resolve(JSON.parse(res.body))
             })
         }))
         await new Promise(resolve => setTimeout(resolve, 100))
     }
+    console.dir(newsList)
     res.json({ newsList })
 }
