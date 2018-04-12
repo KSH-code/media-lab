@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     const newsList = []
     for (let i = 0; i < keywordList.length; i++) {
         newsList.push(await new Promise((resolve, reject) => {
-            request.get('https://openapi.naver.com/v1/search/news.json?query=' + encodeURI(keywordList[i]), {
+            request.get('https://openapi.naver.com/v1/search/news.json?display=1&query=' + encodeURI(keywordList[i]), {
                 headers: {
                     'X-Naver-Client-Id': 'AS6K1gzICkkLrkisD_4p',
                     'X-Naver-Client-Secret': '5MA7twyOkN',
