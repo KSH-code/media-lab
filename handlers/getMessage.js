@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
         return res.json({ message: '파일이나 사진은 입력 현재 미지원입니다.' })
     }
     let message
+    let keyboard = {}
     switch (content) {
         case '사용법':
         case 'help':
@@ -23,10 +24,11 @@ module.exports = async (req, res) => {
             const buttons = await crawling(new Date().toISOString().slice(0, 10))
             console.dir(buttons)
             message = {
-                keyboard: {
-                    type: 'buttons',
-                    buttons
-                }
+                text: '현재 날짜를 기준으로 불러온 트렌드 키워드입니다.'
+            }
+            keyboard = {
+                type: 'buttons',
+                buttons
             }
             break
         default:
@@ -63,17 +65,17 @@ module.exports = async (req, res) => {
                 message_button: {
                     label: '확인해보기',
                     url: newsData.link
-                },
-                keyboard: {
-                    type: 'buttons',
-                    buttons: [
-                        '사용법',
-                        '트렌드',
-                        '취소'
-                    ]
                 }
+            }
+            keyboard = {
+                type: 'buttons',
+                buttons: [
+                    '사용법',
+                    '트렌드',
+                    '취소'
+                ]
             }
             break
     }
-    res.json({ message })
+    res.json({ message, keyboard })
 }
