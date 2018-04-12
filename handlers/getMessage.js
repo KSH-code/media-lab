@@ -3,7 +3,6 @@ const crawling = require('../crawling')
 
 module.exports = async (req, res) => {
     const { type, content } = req.body
-    const buttons = await crawling(new Date().toISOString().slice(0, 10))
     if (type !== 'text') {
         return res.json({ message: '파일이나 사진은 입력 현재 미지원입니다.' })
     }
@@ -21,6 +20,7 @@ module.exports = async (req, res) => {
             }
             break
         case '트렌드':
+            const buttons = await crawling(new Date().toISOString().slice(0, 10))
             message = {
                 message: {
                     text: '현재 날짜를 기준으로 불러온 트렌드 입니다.'
