@@ -13,5 +13,5 @@ app.post('/message', require('./handlers/getMessage'))
 app.use((err, req, res, next) => {
     console.dir(err)
 })
-
+console.log('restart')
 app.listen(7001)
