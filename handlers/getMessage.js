@@ -7,7 +7,6 @@ module.exports = async (req, res) => {
     if (type !== 'text') {
         return res.json({ message: '파일이나 사진은 입력 현재 미지원입니다.' })
     }
-    const sort = `sort=${Math.random() > 0.8 ? 'date' : 'sim'}`
     if (content === '트렌드') {
         return res.json({
             message: {
@@ -19,11 +18,13 @@ module.exports = async (req, res) => {
             }
         })
     }
+    const sort = `sort=${Math.random() > 0.8 ? 'date' : 'sim'}`
     switch (content) {
         case '사용법':
         case 'help':
         case '?':
         case '도움말':
+        case '취소':
             return res.json({
                 message: {
                     text: '문장 또는 단어로 기사를 랜덤으로 쉽게 검색할 수 있는 서비스입니다.\n최근 트렌드를 불러오셔서 간편하게 검색하고 싶으시다면, "트렌드"를 입력해주세요.'
@@ -55,14 +56,14 @@ module.exports = async (req, res) => {
     })
     const message = {
         text: newsData.title.replace(/<br>/gi, '').replace(/<\/br>/gi, '\n').replace(/&quot;/gi, '"').replace(/<\/\w>/gi, '').replace(/<\w>/gi, ''),
-        message_button: {
-            label: '확인해보기',
-            url: newsData.link
-        },
         photo: {
             url: photo.link,
             width: parseInt(photo.sizewidth),
             height: parseInt(photo.sizeheight)
+        },
+        message_button: {
+            label: '확인해보기',
+            url: newsData.link
         },
         keyboard: {
             type: 'buttons',

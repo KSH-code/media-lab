@@ -47,8 +47,9 @@ async function getData(date) {
         })
         await new Data({ date, data: dataList, location: 'ko' }).save()
     } else {
-        return data.data
+        dataList.concat(data.data)
     }
+    dataList.push('텍스트 입력하기')
     return dataList
 }
 module.exports = getData
