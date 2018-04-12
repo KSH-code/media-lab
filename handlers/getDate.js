@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
                 }
             }, (err, res, body) => {
                 if (err) return reject(err)
-                resolve(JSON.parse(res.body))
+                resolve(JSON.parse(res.body).items)
             })
         }))
         await new Promise(resolve => setTimeout(resolve, 100))
