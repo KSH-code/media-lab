@@ -3,11 +3,28 @@ const crawling = require('../crawling')
 
 module.exports = async (req, res) => {
     const { type, content } = req.body
+    const buttons = await crawling(new Date().toISOString().slice(0, 10))
     if (type !== 'text') {
-        const buttons = await crawling(new Date().toISOString().slice(0, 10))
         return res.json({ message: '파일이나 사진은 입력 현재 미지원입니다.' })
     }
-
+    if (content === '트렌드') {
+        return res.json({
+            type: 'buttons',
+            buttons
+        })
+    }
+    switch (content) {
+        case '사용법':
+        case 'help':
+        case '?':
+        case '도움말':
+            return res.json({
+                message: {
+                    text: '문장 또는 단어로 기사를 쉽게 검색할 수 있는 서비스입니다.\n최근 트렌드를 불러오셔서 간편하게 검색하고 싶으시다면, "트렌드"를 입력해주세요.'
+                }
+            })
+            break;
+    }
     const newsData = await new Promise((resolve, reject) => {
         request.get('https://openapi.naver.com/v1/search/news.json?display=1&query=' + encodeURI(content), {
             headers: {
