@@ -49,7 +49,7 @@ async function getData(date) {
     } else {
         dataList.concat(data.data)
     }
-    dataList.push('텍스트 입력하기')
+    dataList.push('취소')
     return dataList
 }
 module.exports = getData
