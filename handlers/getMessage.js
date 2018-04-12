@@ -23,7 +23,6 @@ module.exports = async (req, res) => {
             const buttons = await crawling(new Date().toISOString().slice(0, 10))
             console.dir(buttons)
             message = {
-                text: '현재 날짜를 기준으로 불러온 트렌드 입니다.',
                 keyboard: {
                     type: 'buttons',
                     buttons
