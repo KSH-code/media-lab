@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
         text: newsData.description,
         message_button: {
             label: newsData.title,
-            url: link
+            url: newsData.link
         }
     }
     res.json(message)
