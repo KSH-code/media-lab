@@ -41,27 +41,27 @@ module.exports = async (req, res) => {
             }
             break
         default:
-            const sort = `sort=${Math.random() > 0.8 ? 'date' : 'sim'}`
+            const sort = `sort=date`
             const newsData = await new Promise((resolve, reject) => {
-                request.get(`https://openapi.naver.com/v1/search/news.json?${sort}&display=50&query=${encodeURI(content)}`, {
+                request.get(`https://openapi.naver.com/v1/search/news.json?${sort}&display=1&query=${encodeURI(content)}`, {
                     headers: {
                         'X-Naver-Client-Id': 'AS6K1gzICkkLrkisD_4p',
                         'X-Naver-Client-Secret': '5MA7twyOkN',
                     }
                 }, (err, res, body) => {
                     if (err) return reject(err)
-                    resolve(JSON.parse(res.body).items[Math.floor(Math.random() * 50)])
+                    resolve(JSON.parse(res.body).items[0])
                 })
             })
             const photo = await new Promise((resolve, reject) => {
-                request.get(`https://openapi.naver.com/v1/search/image?${sort}&filter=medium&display=50&query=${encodeURI(content)}`, {
+                request.get(`https://openapi.naver.com/v1/search/image?${sort}&filter=medium&display=1&query=${encodeURI(content)}`, {
                     headers: {
                         'X-Naver-Client-Id': 'AS6K1gzICkkLrkisD_4p',
                         'X-Naver-Client-Secret': '5MA7twyOkN',
                     }
                 }, (err, res, body) => {
                     if (err) return reject(err)
-                    resolve(JSON.parse(res.body).items[Math.floor(Math.random() * 50)])
+                    resolve(JSON.parse(res.body).items[0])
                 })
             })
             message = {
