@@ -21,8 +21,9 @@ const { Data } = require("../models")
 
 async function getData(date) {
     const data = await Data.findOne({ date }).lean(true)
-    const dataList = ['취소']
+    const dataList = []
     if (!data) {
+        dataList.push('취소')
         await new Promise(resolve => {
             request.get('https://trends.google.com/trends/hottrends/atom/feed?pn=p23', {
                 headers: {
